@@ -61,20 +61,15 @@ func frequencySort(s string) string {
 
 
 	for i := max; i > 0; i-- {
-		chars, exists := orderMap[i] 
-		if !exists {
-			break;
-		} else
-		{
+		chars, exists := orderMap[i]
+		if exists {
 			for chr := range chars {
 				
-				for j := i; j >= 0; j-- {
+				for j := i; j > 0; j-- {
 					result = append(result, chars[chr])
 				}
 			}
-			
 		}
-		
 	}
 	
 	return string(result)
@@ -85,5 +80,8 @@ func main() {
 	fmt.Println(frequencySort(s))
 
 	s = "tree"
-	fmt.Println(frequencySort(s))	
+	fmt.Println(frequencySort(s))
+	
+	s = "leetcode"
+	fmt.Println(frequencySort(s))		
 }
