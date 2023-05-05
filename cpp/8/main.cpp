@@ -1,52 +1,57 @@
-#include <string>
 #include <iostream>
+
+#include <string>
+
+#include <algorithm>
 
 class Solution {
 public:
     int myAtoi(std::string s) {
-     
-        const int diff = 48; 
-        int num = 0;
-        int offset = 1;
-        bool positive = true;
-        for(size_t i = s.size(); i > 0; --i)
+        int result = 0; 
+
+        int multiplier = 1; 
+
+        bool is_negative = false;
+
+        bool number_read = false;
+
+        for (auto it = s.end() - 1; it >= s.begin(); --it)
         {
-            char chr = s[i - 1];
-            if (chr == '-' || chr == '+')
+            if (_zero_ascii <= int(*it) && int(*it) <= _nine_ascii)
             {
-                if (chr == '-')
-                {
-                    positive = false;
-                    break;
-                }
+                number_read = true;
+                result = std::clamp(result + ((static_cast<int>(*it) - _zero_ascii) * multiplier), INT_MIN, INT_MAX);
+                multiplier = multiplier * 10;
             }
-            if (48 <= (int)chr &&  (int)chr <= 57)
+            else if ((*it) == _minus_ascii)
             {
-                num = num + (offset * (((int)chr) - diff));
-                offset = offset * 10;
+                is_negative = true;
             }
-            else
+            else if ((*it) == _plus_ascii)
             {
-                break;
+                is_negative = false;
             }
-            
-        }       
-        return positive ? num : (-1 * num);
+            else if ((*it) != _whitespace_ascii && number_read)
+            {
+                return 0;
+            }
+            // Todo what is clamping 
+        }
+
+        return is_negative ? (-1 * result) : result;
     }
+private:    
+    static constexpr int _zero_ascii = 48;
+    static constexpr int _nine_ascii = 57;
+    static constexpr int _minus_ascii = 45;
+    static constexpr int _plus_ascii = 43;
+    static constexpr int _whitespace_ascii = 32;
 };
 
-int main()
+
+int main(void)
 {
-
     Solution s;
-
-    std::string str = "42";
-    std::cout << std::to_string(s.myAtoi(str)) << "\n";
-
-    str = "-142";
-    std::cout << std::to_string(s.myAtoi(str)) << "\n";
-
-    str = "4193 with words";
-    std::cout << std::to_string(s.myAtoi(str)) << "\n";    
-    
+    std::cout << std::to_string(s.myAtoi("42")) << "\n";
+    std::cout << std::to_string(s.myAtoi("-91283472332")) << "\n";
 }
