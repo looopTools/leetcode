@@ -34,6 +34,7 @@ public:
         {
             p_it = p_it + 1;
         }
+
         return s_it == s.end() && p_it == p.end(); 
     }
 
@@ -62,6 +63,7 @@ int main(void)
 {
 
     Solution s;
+
     // assert_result(s.isMatch("aa", "a"), false);
     // assert_result(s.isMatch("aa", "*"), true);
     // assert_result(s.isMatch("cb", "?a"), false);
