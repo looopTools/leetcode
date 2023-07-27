@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+    int max(int n)
+    {
+        int res = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            res = res + i; 
+        }
+        res = res + n;
+        return res; 
+    }
+
+    int missingNumber(vector<int>& nums) {
+        int max_sum = max(nums.size()); 
+
+        for (const int num : nums)
+        {
+            max_sum = max_sum - num; 
+        }
+        return max_sum;
+    }
+};
