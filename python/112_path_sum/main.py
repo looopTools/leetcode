@@ -8,19 +8,22 @@ class Solution(object):
 
     def travers(self, node, value, targetSum):
 
-        if node == None: 
-            return value == targetSum
-        
-
         value = value + node.val
 
-        result = self.travers(node.left, value, targetSum)
+        if not node.left and not node.right: 
+            return value == targetSum
+                
+        result = False
         
-        # Short circut travels
+        if node.left:
+            result = self.travers(node.left, value, targetSum)
+            
+        # Short circut travets
         if result:
             return result
-        
-        result = self.travers(node.right, value, targetSum)
+
+        if node.right:
+            result = self.travers(node.right, value, targetSum)
 
         return result
 
