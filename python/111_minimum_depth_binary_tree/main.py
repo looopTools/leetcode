@@ -10,7 +10,12 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+
+        if not root: 
+            return 0
+
         return self.travers(root, 0)
+        
 
     def travers(self, node, length):
         if not node: 
@@ -18,11 +23,19 @@ class Solution(object):
 
         length = length + 1
 
-        left_length = self.travers(node.left, length)
-        right_length = self.travers(node.right, length)
+        left_length = None
+        right_length = None
 
-        if left_length < right_length: 
+        if node.left:
+            left_length = self.travers(node.left, length)
+        if node.right:
+            right_length = self.travers(node.right, length)
+
+        if (left_length and left_length < right_length) or (left_length and not right_length): 
             return left_length 
-        else:
+        elif right_length:
             return right_length
+        else:
+            return length
+
         
