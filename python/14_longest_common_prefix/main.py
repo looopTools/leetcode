@@ -2,8 +2,6 @@ class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
 
         shortest, index = self.shortest_string(strs)
-
-        print(shortest)
         
         prefix = ""
 
@@ -17,9 +15,9 @@ class Solution:
                 if shortest != elm and shortest[i] != elm[i]:
                     stop = True
                     
-                    if stop:
-                        break
-                    prefix = prefix + shortest[i]
+            if stop:
+                break
+            prefix = prefix + shortest[i]
         return prefix
 
     def shortest_string(self, strs: list[str]) -> (str, int):
@@ -28,7 +26,7 @@ class Solution:
         index = -1 
 
         for i in range(0, len(strs)):
-            if not shortest or len(shortest) > len(strs[i]):
+            if shortest == None or len(shortest) > len(strs[i]):
                 shortest = strs[i]
                 index = i
 
@@ -38,15 +36,16 @@ class Solution:
 
 
 def test(strs: list[str], expected: str, solution: Solution):
-
-    result = expected == solution.longestCommonPrefix(strs)
-    print(f"Result: {result} for strs {strs} with expected: {expected}")
+    shortest = solution.longestCommonPrefix(strs)
+    result = expected == shortest
+    print(f"Result: {result} for strs {strs} with expected: {expected} shortest: {shortest}")
 
 
 if __name__ == "__main__":
 
     solution = Solution()
+    
     test(["flower","flow","flight"], "fl", solution)
     test(["dog","racecar","car"], "", solution)
     test(["", "b"], "", solution)        
-    
+
