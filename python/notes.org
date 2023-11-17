@@ -1,0 +1,16 @@
+#+TITLE: Notes on Python Solutions for Leetcode
+
+These are my notes on solutions for Leetcode problems in Python.
+I outline my thought process for myself.
+This enables me to reevaluate how to solve different problems and lets me remember why I did certain things. 
+
+
+* 414 Third Maximum Number
+
+** First solution attempt [The dump one]
+
+So the first attempt would be to take a list and remove duplicates and the sort the list in descending order and take the element at index 2 or if the length is < 3 we return the first element
+
+** Second solution [WiP]
+
+How to solve this in o(n)
