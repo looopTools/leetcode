@@ -24,3 +24,9 @@ This should take o(n) of the longest string.
 - We determine which list is the shortest and iterate both in reverse based on index of the smallest
 - It runs (roughly) in O(n) if we exclude string split from python as we cannot address strings by index for assignment
  
+
+
+* 559 Maximum Depth of N-ary Tree
+
+- We do not know the depth of any path and therefore we need to traverse the full tree.
+- we need to find the longest child length 
