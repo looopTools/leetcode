@@ -24,7 +24,10 @@ This should take o(n) of the longest string.
 - We determine which list is the shortest and iterate both in reverse based on index of the smallest
 - It runs (roughly) in O(n) if we exclude string split from python as we cannot address strings by index for assignment
  
+* 496 Next Greater element
 
+This can be done in O(N * M) which is not good but it is the first solution I will go for.
+Where for each elem N in nums1 you check if there is a high element in nums2
 
 * 559 Maximum Depth of N-ary Tree
 
